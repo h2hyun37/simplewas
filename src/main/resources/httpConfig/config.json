@@ -1,0 +1,25 @@
+{
+	"virtualHost": [{
+			"host": "localhost",
+			"port": 8080,
+			"docRoot": "/Users/1001065/dev/workspace/was2/docroot1",
+			"errorDocument": {
+				"403": "/error/403error.html",
+				"404": "/error/404error.html",
+				"500": "/error/500error.html"
+			}
+		},
+
+		{
+			"host": "localhost",
+			"port": 8090,
+			"docRoot": "/Users/1001065/dev/workspace/was2/docroot2",
+			"errorDocument": {
+				"403": "/error/403error.html",
+				"404": "/error/404error.html",
+				"500": "/error/500error.html"
+			}
+		}
+	]
+
+}

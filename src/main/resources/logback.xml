@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="true">
+
+<!-- Insert the current time formatted as "yyyyMMdd'T'HHmmss" under
+       the key "bySecond" into the logger context. This value will be
+       available to all subsequent configuration elements. -->
+  <timestamp key="byDate" datePattern="yyyyMMdd"/>
+
+	<!-- CONSOLE LOG FORMAT DEFINE -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder
+			by default -->
+		<encoder>
+			<pattern>%-5level [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %class{0}:%line ## %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- DEFAULT LOG FORMAT DEFINE -->
+	<appender name="DEFAULT-LOG-DAILY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/debug.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>logs/debug.log.%d{yyyyMMdd}
+			</fileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%-5level [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %class{0}:%line ## %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="DEFAULT-LOG" level="DEBUG" additivity="false">
+		<appender-ref ref="DEFAULT-LOG-DAILY" />
+	</logger>
+
+	<root level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>
